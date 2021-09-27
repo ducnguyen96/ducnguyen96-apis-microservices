@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta21
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infras/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: ducnguyen96/ducnguyen96-apis-api-gateway
+      context: api-gateway
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .

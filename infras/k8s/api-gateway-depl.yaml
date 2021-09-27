@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-depl
+  namespace: ingress-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: ducnguyen96/ducnguyen96-apis-api-gateway
+          env:
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: DB_HOST
+              value: "api-gateway-postgres-srv"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USERNAME
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "postgres"
+            - name: DB_DATABASE
+              value: "postgres"
+            - name: ENABLE_ORMLOGS
+              value: "true"
+            - name: DB_SYNC
+              value: "true"
+            - name: JWT_EXPIRATION_TIME
+              value: "3600"
+            - name: NODE_ENV
+              value: "dev"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-srv
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - name: api-gateway
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

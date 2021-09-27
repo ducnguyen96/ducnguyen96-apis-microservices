@@ -1,6 +1,6 @@
 {
   "name": "@ducnguyen96/ducnguyen96-apis-common-types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "scripts": {
     "clean": "del ./build/*",
