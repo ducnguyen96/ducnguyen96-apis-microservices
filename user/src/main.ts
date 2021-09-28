@@ -4,7 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { json } from 'body-parser';
 
-const PORT = parseInt(process.env.PORT ?? '3001', 10);
+const PORT = parseInt(process.env.PORT ?? '3000', 10);
 process.env.TZ = 'GMT';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
