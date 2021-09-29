@@ -6,7 +6,7 @@ deploy:
       - ./infras/k8s/*
 build:
   local:
-    push: false
+    push: true
   artifacts:
     - image: ducnguyen96/ducnguyen96-apis-api-gateway
       context: api-gateway

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user-postgres-depl
-  namespace: ingress-nginx
+  # namespace: nginx-ingress
 spec:
   replicas: 1
   selector:
@@ -33,7 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: user-postgres-srv
-  namespace: ingress-nginx
+  # namespace: nginx-ingress
 spec:
   selector:
     app: user-postgres
@@ -47,7 +47,7 @@ spec:
 # kind: Service
 # metadata:
 #   name: user-db
-#   namespace: ingress-nginx
+#   namespace: nginx-ingress
 # spec:
 #   type: NodePort
 #   selector:

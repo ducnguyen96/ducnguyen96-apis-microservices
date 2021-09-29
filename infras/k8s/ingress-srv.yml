@@ -2,16 +2,21 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-srv
-  namespace: ingress-nginx
+  # namespace: nginx-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/issuer: "letsencrypt-cluster-issuer"
 spec:
+  tls:
+    - hosts:
+        - ducnguyen96.xyz
+      secretName: tls-secret
   rules:
-    - host: ducnguyen96.com
+    - host: ducnguyen96.xyz
       http:
         paths:
-          - path: /
+          - path: /graphql
             pathType: Prefix
             backend:
               service:

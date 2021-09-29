@@ -24,7 +24,7 @@ import { AppController } from './app.controller';
     }),
     GraphQLModule.forRootAsync({
       useFactory: async () => ({
-        path: '/',
+        path: '/graphql',
         tracing: true,
         uploads: {
           maxFieldSize: 100 * 1000000, // 100MB
